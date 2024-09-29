@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Time calculator</string>
     <string name="timeCalculator">Калькулятор времени</string>
+    <string name="version">Версия 1</string>
     <string name="buttonSumBTN">+</string>
     <string name="buttonDifBTN">-</string>
     <string name="result">Результат</string>
     <string name="reset">Сброс</string>
+    <string name="exit">Выход</string>
 </resources>
