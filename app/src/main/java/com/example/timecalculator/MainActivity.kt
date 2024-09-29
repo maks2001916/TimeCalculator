@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                 firstOperandET.text.clear()
                 secondOperandET.text.clear()
                 resultTV.text = getString(R.string.result)
+                resultTV.setTextColor(resources.getColor(R.color.black))
                 Toast.makeText(
                     applicationContext,
                     getString(R.string.resetToast),
@@ -93,14 +94,20 @@ class MainActivity : AppCompatActivity() {
             resultTV.text = R.string.Incorrect_time_format.toString()
         }
         when (v?.id) {
-            R.id.buttonSumBTN -> result = mathematicalOperations.addTime(
-                mathematicalOperations.transformation(firstOperand),
-                mathematicalOperations.transformation(secondOperand)
-            )
-            R.id.buttonDifBTN -> result = mathematicalOperations.subtractTime(
-                mathematicalOperations.transformation(firstOperand),
-                mathematicalOperations.transformation(secondOperand)
-            )
+            R.id.buttonSumBTN -> {
+                result = mathematicalOperations.addTime(
+                    mathematicalOperations.transformation(firstOperand),
+                    mathematicalOperations.transformation(secondOperand)
+                )
+                resultTV.setTextColor(resources.getColor(R.color.red))
+            }
+            R.id.buttonDifBTN -> {
+                result = mathematicalOperations.subtractTime(
+                    mathematicalOperations.transformation(firstOperand),
+                    mathematicalOperations.transformation(secondOperand)
+                )
+                resultTV.setTextColor(resources.getColor(R.color.red))
+            }
 
         }
         resultTV.text = mathematicalOperations.formatTime(result)
