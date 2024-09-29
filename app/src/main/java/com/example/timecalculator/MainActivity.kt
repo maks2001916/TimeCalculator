@@ -1,12 +1,14 @@
 package com.example.timecalculator
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -37,8 +39,8 @@ class MainActivity : AppCompatActivity() {
         }
         toolbarMain = findViewById(R.id.toolbarMain)
         setSupportActionBar(toolbarMain)
-        title = R.string.timeCalculator.toString()
-        toolbarMain.subtitle = R.string.version.toString()
+        title = getString(R.string.timeCalculator)
+        toolbarMain.subtitle = getString(R.string.version)
         toolbarMain.setLogo(R.drawable.ic_calculator)
 
         firstOperandET = findViewById(R.id.firstOperandET)
@@ -62,9 +64,21 @@ class MainActivity : AppCompatActivity() {
             R.id.resetMenuMain -> {
                 firstOperandET.text.clear()
                 secondOperandET.text.clear()
-                resultTV.text = R.string.result.toString()
+                resultTV.text = getString(R.string.result)
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.resetToast),
+                    Toast.LENGTH_LONG
+                ).show()
             }
-            R.id.exitMenuMain -> finish()
+            R.id.exitMenuMain -> {
+                finish()
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.app_closed),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -76,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         var result = 0
         if (mathematicalOperations.transformation(firstOperand) == 0
             || mathematicalOperations.transformation(secondOperand) == 0) {
-            resultTV.text = "Неверный формат времени"
+            resultTV.text = R.string.Incorrect_time_format.toString()
         }
         when (v?.id) {
             R.id.buttonSumBTN -> result = mathematicalOperations.addTime(
@@ -90,5 +104,10 @@ class MainActivity : AppCompatActivity() {
 
         }
         resultTV.text = mathematicalOperations.formatTime(result)
+        Toast.makeText(
+            applicationContext,
+            "${getString(R.string.resetToast)}: ${mathematicalOperations.formatTime(result)}",
+            Toast.LENGTH_LONG
+        ).show()
     }
 }

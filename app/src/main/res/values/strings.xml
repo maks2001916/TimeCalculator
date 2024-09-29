@@ -5,6 +5,9 @@
     <string name="buttonSumBTN">+</string>
     <string name="buttonDifBTN">-</string>
     <string name="result">Результат</string>
+    <string name="resetToast">Данные очищены</string>
+    <string name="Incorrect_time_format">Неверный формат времени</string>
     <string name="reset">Сброс</string>
     <string name="exit">Выход</string>
+    <string name="app_closed">Приложение закрыто</string>
 </resources>
